@@ -8,15 +8,26 @@
 
 import UIKit
 
+protocol AddItemViewControllerDelegate :class{
+    func addItemViewControllerDidCancel(controller: AddItemTableViewController)
+    func addItemViewController(controller: AddItemTableViewController, didFinishAddingItem item: ChecklistItem)
+}
 class AddItemTableViewController: UITableViewController , UITextFieldDelegate{
+    
+    weak var delegate: AddItemViewControllerDelegate?
     @IBAction func cancel(){
-        dismissViewControllerAnimated(true, completion: nil)
+        delegate?.addItemViewControllerDidCancel(self)
+        //dismissViewControllerAnimated(true, completion: nil)
     }
     
     @IBOutlet weak var textField: UITextField!
     @IBAction func done(){
-        println("Contents of the text field \(textField.text)")
-        dismissViewControllerAnimated(true, completion: nil)
+        let item = ChecklistItem()
+        item.text = textField.text
+        item.checked = false
+        delegate?.addItemViewController(self, didFinishAddingItem: item)
+        //println("Contents of the text field \(textField.text)")
+        //dismissViewControllerAnimated(true, completion: nil)
     }
     
     @IBOutlet weak var doneBarButton: UIBarButtonItem!

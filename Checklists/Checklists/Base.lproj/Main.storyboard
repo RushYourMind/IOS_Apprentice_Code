@@ -36,7 +36,7 @@
                     <navigationItem key="navigationItem" title="Checklists" id="pf1-r8-9nc">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="QLH-Lc-rCP">
                             <connections>
-                                <segue destination="b9Q-xX-qKq" kind="presentation" id="XJG-TY-aWl"/>
+                                <segue destination="b9Q-xX-qKq" kind="presentation" identifier="AddItem" id="XJG-TY-aWl"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -102,7 +102,7 @@
                     <navigationItem key="navigationItem" title="Add Item" id="h2P-Yc-70z">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="HaW-eS-pGb">
                             <connections>
-                                <action selector="cancel" destination="cBR-gg-FY5" id="kDw-JV-9ff"/>
+                                <action selector="cancel" destination="cBR-gg-FY5" id="S5T-Gt-pHd"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" enabled="NO" systemItem="done" id="DMf-sG-bW8">

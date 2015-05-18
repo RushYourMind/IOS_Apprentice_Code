@@ -8,7 +8,7 @@
 
 import UIKit
 //import "ChecklistItem"
-class ChecklistViewController: UITableViewController {
+class ChecklistViewController: UITableViewController , AddItemViewControllerDelegate{
 
     var items: [ChecklistItem]
     required init(coder aDecoder: NSCoder)
@@ -85,7 +85,8 @@ class ChecklistViewController: UITableViewController {
             cell.accessoryType = .None
         }
     }
-    
+    //dont need this anymore
+   /*
     @IBAction func addItem(){
         let newRowIndex = items.count
         
@@ -97,6 +98,31 @@ class ChecklistViewController: UITableViewController {
         
         let indexPaths = [indexPath]
         tableView.insertRowsAtIndexPaths(indexPaths, withRowAnimation: .Automatic)
+    }*/
+    
+    func addItemViewControllerDidCancel(controller: AddItemTableViewController) {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func addItemViewController(controller: AddItemTableViewController, didFinishAddingItem item: ChecklistItem) {
+        let newRowIndex = items.count
+        items.append(item)
+        let indexPath = NSIndexPath(forRow: newRowIndex, inSection: 0)
+        
+        let indexPaths = [indexPath]
+        tableView.insertRowsAtIndexPaths(indexPaths, withRowAnimation: .Automatic)
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    //当从ChecklistController跳转到NavigationnControllerde时候，设置好delegate
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        println(segue.identifier)
+        if segue.identifier == "AddItem"{
+            let navigationController = segue.destinationViewController as! UINavigationController
+            let controller = navigationController.topViewController as! AddItemTableViewController
+            controller.delegate = self
+            
+        }
     }
 }
 
