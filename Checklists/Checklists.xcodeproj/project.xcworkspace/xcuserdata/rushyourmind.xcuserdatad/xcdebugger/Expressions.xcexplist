@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "GLOBAL">
+         <PersistentStrings>
+            <PersistentString
+               value = "indexPath.row">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Checklists.AddItemTableViewController.done (Checklists.AddItemTableViewController)() -&gt; ():AddItemTableViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "itemToEdit">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Checklists.ChecklistViewController.prepareForSegue (Checklists.ChecklistViewController)(ObjectiveC.UIStoryboardSegue, sender : Swift.Optional&lt;Swift.AnyObject&gt;) -&gt; ():ChecklistViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "tableView.indexPathForCell(sender as! UITableViewCell)">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>

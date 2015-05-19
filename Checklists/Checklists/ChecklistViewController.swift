@@ -56,7 +56,7 @@ class ChecklistViewController: UITableViewController , AddItemViewControllerDele
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("ChecklistItem") as! UITableViewCell
         configureTextForCell(cell, withChecklistItem: items[indexPath.row])
-        configureCheckmarkForCell(cell, indexPath: indexPath)
+        configureCheckmarkForCell(cell, withChecklistItem: items[indexPath.row])
         return cell
     }
 
@@ -64,7 +64,7 @@ class ChecklistViewController: UITableViewController , AddItemViewControllerDele
         if let cell = tableView.cellForRowAtIndexPath(indexPath){
             let item = items[indexPath.row]
             item.checked = !item.checked
-            configureCheckmarkForCell(cell, indexPath: indexPath)
+            configureCheckmarkForCell(cell,withChecklistItem: items[indexPath.row])
         }
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
@@ -76,14 +76,21 @@ class ChecklistViewController: UITableViewController , AddItemViewControllerDele
         tableView.deleteRowsAtIndexPaths(indexPaths, withRowAnimation: .Automatic)
     }
     
-    func configureCheckmarkForCell(cell : UITableViewCell, indexPath: NSIndexPath){
-        var isChecked = false
+    
+    func configureCheckmarkForCell(cell : UITableViewCell, withChecklistItem item: ChecklistItem){
+        let label = cell.viewWithTag(1001) as! UILabel
+        if item.checked {
+            label.text = "◊"
+        } else{
+            label.text = ""
+        }
+        /*var isChecked = false
         let item = items[indexPath.row]
         if item.checked{
             cell.accessoryType = .Checkmark
         }else{
             cell.accessoryType = .None
-        }
+        }*/
     }
     //dont need this anymore
    /*
@@ -113,6 +120,15 @@ class ChecklistViewController: UITableViewController , AddItemViewControllerDele
         tableView.insertRowsAtIndexPaths(indexPaths, withRowAnimation: .Automatic)
         dismissViewControllerAnimated(true, completion: nil)
     }
+    func addItemViewController(controller: AddItemTableViewController, didFinisheEditignItem item: ChecklistItem){
+        if let index = find(items, item){
+            let indexPath = NSIndexPath(forRow: index, inSection: 0)
+            if let cell = tableView.cellForRowAtIndexPath(indexPath){
+                configureTextForCell(cell, withChecklistItem: item)
+            }
+        }
+        dismissViewControllerAnimated(true, completion: nil)
+    }
     
     //当从ChecklistController跳转到NavigationnControllerde时候，设置好delegate
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -122,6 +138,13 @@ class ChecklistViewController: UITableViewController , AddItemViewControllerDele
             let controller = navigationController.topViewController as! AddItemTableViewController
             controller.delegate = self
             
+        } else if segue.identifier == "EditItem"{
+            let navigationController = segue.destinationViewController as! UINavigationController
+            let controller = navigationController.topViewController as! AddItemTableViewController
+            controller.delegate = self
+            if let indexPath = tableView.indexPathForCell(sender as! UITableViewCell){
+               controller.itemToEdit = items[indexPath.row]
+            }
         }
     }
 }
