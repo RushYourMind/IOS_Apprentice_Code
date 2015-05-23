@@ -69,8 +69,27 @@ class AllListsViewController: UITableViewController {
     }
     
 
+    //这里的sender传 的checklist不会直接到达controller，而是传导了下面prepareForSegue方法中的sender
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        performSegueWithIdentifier("ShowChecklist", sender: nil)
+        let checklist = lists[indexPath.row]
+        performSegueWithIdentifier("ShowChecklist", sender: checklist)
+    }
+    
+    //这个函数发生在ChecklistViewController的viewDidLoad函数之前
+    //整个发生的顺序是：   
+    //1. 调用preformSegue...
+    //2. 在storyboard中查找这个segue
+    //3. 找到这个viewcontroller，创建这个controller
+    //4. 调用controller的 init
+    //5. 这里的prepareForSegue
+    //6. controller 的viewDidLoad函数
+    //所以controller中的Checklist要定义为Checlist!,因为初始化的时候可以允许它为空
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "ShowChecklist"{
+            let controller = segue.destinationViewController as! ChecklistViewController
+            //这里设置controller中 的 checklist
+            controller.checklist = sender as! Checklist
+    }
     }
 
 }

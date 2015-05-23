@@ -11,23 +11,9 @@ import UIKit
 class ChecklistViewController: UITableViewController , AddItemViewControllerDelegate{
 
     var items: [ChecklistItem]
+    var checklist : Checklist!
     required init(coder aDecoder: NSCoder)
     {
-//        items = [ChecklistItem]()
-//        let row0Item = ChecklistItem()
-//        row0Item.text = "walk the dog"
-//        row0Item.checked = false
-//        items.append(row0Item)
-//        
-//        let row1Item = ChecklistItem()
-//        row1Item.text = "Brush my teeth"
-//        row1Item.checked = true
-//        items.append(row1Item)
-//        
-//        let row2Item = ChecklistItem()
-//        row2Item.text = "Soccer practice§§"
-//        row2Item.checked = false
-//        items.append(row2Item)
         items = [ChecklistItem]()
         
        
@@ -40,6 +26,8 @@ class ChecklistViewController: UITableViewController , AddItemViewControllerDele
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.rowHeight = 44
+        title = checklist.name
         // Do any additional setup after loading the view, typically from a nib.
     }
 
