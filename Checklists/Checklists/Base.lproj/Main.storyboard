@@ -5,6 +5,28 @@
     </dependencies>
     <scenes>
         <!--Checklists-->
+        <scene sceneID="Y9h-t1-WwS">
+            <objects>
+                <tableViewController id="tHc-QT-L8h" customClass="AllListsViewController" customModule="Checklists" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Fcz-cg-pfQ">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <connections>
+                            <outlet property="dataSource" destination="tHc-QT-L8h" id="hV1-c2-lKi"/>
+                            <outlet property="delegate" destination="tHc-QT-L8h" id="sgQ-Q7-G61"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Checklists" id="ioH-C6-4sL"/>
+                    <connections>
+                        <segue destination="Lw5-rm-x8W" kind="show" identifier="ShowChecklist" id="ucf-LE-rvl"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NLX-8O-IHh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1114" y="-817"/>
+        </scene>
+        <!--Checklists-->
         <scene sceneID="Kas-fV-49X">
             <objects>
                 <tableViewController id="Lw5-rm-x8W" customClass="ChecklistViewController" customModule="Checklists" customModuleProvider="target" sceneMemberID="viewController">
@@ -27,7 +49,7 @@
                                         <label opaque="NO" userInteractionEnabled="NO" tag="1001" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="✔️" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gir-1b-2cn">
                                             <rect key="frame" x="15" y="11" width="534" height="27"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -65,7 +87,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="Lw5-rm-x8W" kind="relationship" relationship="rootViewController" id="0Wp-xf-80d"/>
+                        <segue destination="tHc-QT-L8h" kind="relationship" relationship="rootViewController" id="dn9-BB-bCP"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mrb-hq-aq3" userLabel="First Responder" sceneMemberID="firstResponder"/>
