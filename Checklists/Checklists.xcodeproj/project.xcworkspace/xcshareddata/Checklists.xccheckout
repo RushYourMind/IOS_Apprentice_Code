@@ -7,14 +7,14 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>30CCB5AC-4246-41D4-BAB3-89C226862200</string>
 	<key>IDESourceControlProjectName</key>
-	<string>project</string>
+	<string>Checklists</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>58B4297BFA35B43D98D2C0FA73FCA462D28EF221</key>
 		<string>https://github.com/RushYourMind/IOS_Apprentice_Code.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>Checklists/Checklists.xcodeproj/project.xcworkspace</string>
+	<string>Checklists/Checklists.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>58B4297BFA35B43D98D2C0FA73FCA462D28EF221</key>

@@ -11,11 +11,32 @@ import UIKit
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
+    let dataModel = DataModel()
     var window: UIWindow?
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        println("\(dataModel.documentDirectory())")
         // Override point for customization after application launch.
+        let navigationController = window!.rootViewController as! UINavigationController
+        let controller = navigationController.viewControllers[0] as! AllListsViewController
+        controller.dataModel = dataModel;
+        
+        
+        let date = NSDate(timeIntervalSinceNow: 10)
+        let localNotification = UILocalNotification()
+        localNotification.fireDate = date
+        localNotification.timeZone = NSTimeZone.defaultTimeZone()
+        localNotification.alertBody = "I am a notification body"
+        localNotification.soundName = UILocalNotificationDefaultSoundName
+        
+        UIApplication.sharedApplication().scheduleLocalNotification(localNotification)
+        
+       /* let notificationSettings = UIUserNotificationSettings(forTypes: .Alert | .Sound , categories: nil)
+        UIApplication.sharedApplication().registerUserNotificationSettings(notificationSettings)
+        */
+        
+        
         return true
     }
 
@@ -45,9 +66,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     //save function
     func saveData(){
+        /*
         let navigationController = window!.rootViewController as! UINavigationController
         let controller = navigationController.viewControllers[0] as! AllListsViewController
-        controller.saveChecklists()
+        controller.dataModel.saveChecklists()*/
+        dataModel.saveChecklists()
     }
 
 
